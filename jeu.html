@@ -10,7 +10,11 @@
 <body>
     <div>
         <h1>JUSTE PRIX</h1>
-        <h2>A toi de jouer</h2>
+        <script>
+            const urlParams = new URLSearchParams(window.location.search);
+            const pseudo = urlParams.get('pseudo');
+            document.body.innerHTML += "<h2>A toi de jouer " + pseudo + "</h2>";
+        </script>
         <div>
             <input type="text" class="mini-input" placeholder="Entrez le prix">
             <a class="button" href="page_jeu.html">Soumettre ma proposition</a>
