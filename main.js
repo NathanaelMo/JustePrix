@@ -1,11 +1,13 @@
+const fs = require('fs').promises;
+
 async function chargerEtChoisirObjet() {
     try {
         // Chargement du fichier JSON
-        const reponse = await fetch('./data.json');
-        const data = await reponse.json();
+        const data = await fs.readFile('./liste_objet.json', 'utf-8');
+        const parsedData = JSON.parse(data);
 
         // Sélection aléatoire d'un objet
-        const objetAleatoire = data[Math.floor(Math.random() * data.length)];
+        const objetAleatoire = parsedData[Math.floor(Math.random() * parsedData.length)];
 
         // Retourne l'objet et son prix
         return objetAleatoire;
@@ -14,7 +16,6 @@ async function chargerEtChoisirObjet() {
         return null; // Retourne null en cas d'erreur
     }
 }
-
 
 // Votre fonction principale
 async function main() {
