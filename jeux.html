@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<iframe src="./header.html" frameborder="0" width="100%" height="100px"></iframe>
+
+<!-- Le reste du contenu de votre page va ici -->
+<section>
+    <p>Comme toujours il faut essayer de deviner le prix le plus juste</p>
+</section>
+<div>
+    <button onclick="afficherObjetAleatoire()">Afficher un objet aléatoire</button>
+
+<script src="main.js"></script>
+<script>
+    async function afficherObjetAleatoire() {
+        const objet = await chargerEtChoisirObjet();
+        if (objet) {
+            console.log('Objet aléatoire:', objet);
+            // Faites ce que vous voulez avec l'objet, par exemple, affichez-le dans une balise HTML
+            document.getElementById('resultat').innerHTML = `Objet: ${objet.nom}, Prix: ${objet.prix}`;
+        }
+    }
+</script>
+
+<div id="resultat"></div>
+</div>
+
+</body>
+</html>
