@@ -1,7 +1,7 @@
 const fs = require('fs')
 
-const base = "../serveur_http"
-const port_http = 3000
+const base = "./serveur_http.js"
+const port_http = 8080
 
 if (!fs.existsSync(base)) {
 console.log("Erreur chargement config.js")
