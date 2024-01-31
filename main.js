@@ -1,7 +1,7 @@
 async function chargerEtChoisirObjet() {
     try {
         // Chargement du fichier JSON
-        const reponse = await fetch('data.json');
+        const reponse = await fetch('./data.json');
         const data = await reponse.json();
 
         // Sélection aléatoire d'un objet
