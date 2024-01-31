@@ -1,1 +1,21 @@
-<script src="nomDeMonFichier.js"></script>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Votre Page Web</title>
+</head>
+<body>
+    <h1>Bienvenue sur Ma Page</h1>
+    <p>Le fichier JavaScript va s'exécuter une fois la page chargée.</p>
+
+    <!-- Inclusion du fichier JavaScript -->
+    <script src="main.js"></script>
+
+    <!-- Ajout d'un événement pour exécuter main() après le chargement du DOM -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            main();
+        });
+    </script>
+</body>
+</html>
