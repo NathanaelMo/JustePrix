@@ -1,0 +1,64 @@
+{
+  "objets": [
+    {
+      "nom": "Hélicoptère",
+      "prix": 200000
+    },
+    {
+      "nom": "Frigo",
+      "prix": 350
+    },
+    {
+      "nom": "Un sourire",
+      "prix": 0
+    },
+    {
+      "nom": "Clio 4 blanche d'occasion",
+      "prix": 11500
+    },
+    {
+      "nom": "Iphone 15",
+      "prix": 900
+    },
+    {
+      "nom": "Menu du RU sans promo",
+      "prix": 3
+    },
+    {
+      "nom": "Occulus Rift (casque VR)",
+      "prix": 300
+    },
+    {
+      "nom": "Batte de baseball",
+      "prix": 25
+    },
+    {
+      "nom": "Ballon de foot",
+      "prix": 20
+    },
+    {
+      "nom": "Happy meal (McDo)",
+      "prix": 4
+    },
+    {
+      "nom": "Planche de surf",
+      "prix": 200
+    },
+    {
+      "nom": "Tablette graphique XP-PEN",
+      "prix": 50
+    },
+    {
+      "nom": "Menu étudiant au Subway",
+      "prix": 9
+    },
+    {
+      "nom": "Jean Levis classique",
+      "prix": 100
+    },
+    {
+      "nom": "Pinte de bière à Brest",
+      "prix": 5
+    }
+  ]
+}
