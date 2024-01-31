@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -20,7 +21,16 @@
     <button class="add-button">Ajouter</button></section>
   </div>
 <div>
-  
+ 
+<!-- Inclusion du fichier JavaScript -->
+<script src="main.js"></script>
+
+<!-- Ajout d'un événement pour exécuter main() après le chargement du DOM -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        main();
+    });
+</script>
 
 </body>
 </html>
