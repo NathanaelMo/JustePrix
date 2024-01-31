@@ -2,63 +2,93 @@
   "objets": [
     {
       "nom": "Hélicoptère",
-      "prix": 200000
+      "prix": 200000,
+      "imageFond": "./Images_Juste_Prix_Avec_Fond/helicoptere.jpg",
+      "imagePng": "./Images_Juste_Prix_Avec_Fond/helicoptere.png"
     },
     {
       "nom": "Frigo",
-      "prix": 350
+      "prix": 350,
+      "imageFond": "./Images_Juste_Prix_Avec_Fond/frigo.jpg",
+      "imagePng": "./Images_Juste_Prix_Avec_Fond/frogo.png"
     },
     {
       "nom": "Un sourire",
-      "prix": 0
+      "prix": 0,
+      "imageFond": "./Images_Juste_Prix_Avec_Fond/sourire.jpg",
+      "imagePng": "./Images_Juste_Prix_Avec_Fond/sourire.png"
     },
     {
       "nom": "Clio 4 blanche d'occasion",
-      "prix": 11500
+      "prix": 11500,
+      "imageFond": "./Images_Juste_Prix_Avec_Fond/clio.jpg",
+      "imagePng": "./Images_Juste_Prix_Avec_Fond/clio.png"
     },
     {
       "nom": "Iphone 15",
-      "prix": 900
+      "prix": 900,
+      "imageFond": "./Images_Juste_Prix_Avec_Fond/iphone15.jpg",
+      "imagePng": "./Images_Juste_Prix_Avec_Fond/iphone15.png"
     },
     {
       "nom": "Menu du RU sans promo",
-      "prix": 3
+      "prix": 3,
+      "imageFond": "./Images_Juste_Prix_Avec_Fond/ru.jpg",
+      "imagePng": "./Images_Juste_Prix_Avec_Fond/ru.png"
     },
     {
       "nom": "Occulus Rift (casque VR)",
-      "prix": 300
+      "prix": 300,
+      "imageFond": "./Images_Juste_Prix_Avec_Fond/oculus.jpg",
+      "imagePng": "./Images_Juste_Prix_Avec_Fond/oculus.png"
     },
     {
       "nom": "Batte de baseball",
-      "prix": 25
+      "prix": 25,
+      "imageFond": "./Images_Juste_Prix_Avec_Fond/batte.jpg",
+      "imagePng": "./Images_Juste_Prix_Avec_Fond/batte.png"
     },
     {
       "nom": "Ballon de foot",
-      "prix": 20
+      "prix": 20,
+      "imageFond": "./Images_Juste_Prix_Avec_Fond/ballon_de_foot.jpg",
+      "imagePng": "./Images_Juste_Prix_Avec_Fond/ballon_de_foot.png"
     },
     {
       "nom": "Happy meal (McDo)",
-      "prix": 4
+      "prix": 4,
+      "imageFond": "./Images_Juste_Prix_Avec_Fond/happy_meal.jpg",
+      "imagePng": "./Images_Juste_Prix_Avec_Fond/happy_meal.png"
     },
     {
       "nom": "Planche de surf",
-      "prix": 200
+      "prix": 200,
+      "imageFond": "./Images_Juste_Prix_Avec_Fond/planche_de_surf.jpg",
+      "imagePng": "./Images_Juste_Prix_Avec_Fond/planche_de_surf.png"
     },
     {
       "nom": "Tablette graphique XP-PEN",
-      "prix": 50
+      "prix": 50,
+      "imageFond": "./Images_Juste_Prix_Avec_Fond/tablette.jpg",
+      "imagePng": "./Images_Juste_Prix_Avec_Fond/tablette.png"
     },
     {
       "nom": "Menu étudiant au Subway",
-      "prix": 9
+      "prix": 9,
+      "imageFond": "./Images_Juste_Prix_Avec_Fond/subway.jpg",
+      "imagePng": "./Images_Juste_Prix_Avec_Fond/subway.png"
     },
     {
       "nom": "Jean Levis classique",
-      "prix": 100
+      "prix": 100,
+      "imageFond": "./Images_Juste_Prix_Avec_Fond/jeans.jpg",
+      "imagePng": "./Images_Juste_Prix_Avec_Fond/jeans.png"
     },
     {
       "nom": "Pinte de bière à Brest",
-      "prix": 5
+      "prix": 5,
+      "imageFond": "./Images_Juste_Prix_Avec_Fond/pinte.jpg",
+      "imagePng": "./Images_Juste_Prix_Avec_Fond/pinte.png"
     }
   ]
 }
