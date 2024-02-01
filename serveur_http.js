@@ -8,7 +8,7 @@ const port_http = config.port_http;
 const app = express();
 
 // Ajoutez cette ligne après la création de l'application Express
-app.use(express.static('html')); // Remplacez 'public' par le chemin vers votre dossier contenant index.html
+app.use(express.static('Front')); // Remplacez 'public' par le chemin vers votre dossier contenant index.html
 
 
 app.get('/getRandomObject', async (req, res) => {
