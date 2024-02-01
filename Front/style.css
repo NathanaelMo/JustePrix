@@ -1,0 +1,87 @@
+/* Conteneurs */
+
+header {
+  background-color: #ff5d63;
+  padding: 1px;
+  font-family: Impact;
+  font-size: 30px;
+  text-align: center;
+  color: white;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 5;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+div {
+  text-align: center;
+  padding: 3px;
+}
+
+/* Formats d'écriture */
+
+h2 {
+  color: #222222;
+  text-align: center;
+  font-size: 30px;
+}
+
+h3 {
+  color: #222222;
+  text-align: center;
+  font-size: 27px;
+}
+
+p {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Bouttons */
+
+.button {
+  padding: 10px;
+  background-color: #ff5d63;
+  color: #fff;
+  border: none;
+  font-size: 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Script */
+
+.script {
+  text-align: center;
+}
+
+/* Zones de saisie de texte */
+
+input {
+  box-sizing: border-box;
+  width: 220px;
+  padding: 10px;
+  margin: 15px;
+  font-size: 18px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #000000;
+  box-shadow: #ff5d63;
+}
+
+/* Images */
+
+.image_accueil {
+  width: 125px; 
+  height: auto;
+}
