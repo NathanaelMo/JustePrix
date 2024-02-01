@@ -1,8 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 
@@ -10,8 +12,66 @@
 
 <!-- Le reste du contenu de votre page va ici -->
 <section>
-    <p>Comme toujours il faut essayer de deviner le prix le plus juste</p>
+    <p>Comme toujours il faut essayer de deviner le prix le plus juste, BONNE CHANCE</p>
 </section>
+<section>
+    <div><button id="getRandomObjectButton" class="add-button">Nouvelle question</button>
+        
+    </div>
+    </section><section>
+    <div>
+    <p>Quel est le prix de cet objet ?</p>
+    <div id="object">
+        <!-- Les détails de l'objet choisi seront affichés ici -->
+    <div>
+        
+      
+    
+</div></section>
+<section>
+    <div>
+    <input type="text" id="userInput" class="mini-input" placeholder="Ma réponse en euro">
+    <button id="validateButton" class="add-button">Valider</button>
+    
+    <div id="message"></div></div></section>
+
+    <script>
+        var prix =0;
+        document.getElementById('getRandomObjectButton').addEventListener('click', async () => {
+            try {
+                const response = await fetch('/getRandomObject');
+                const data = await response.json();
+
+                // Afficher les détails de l'objet dans #objectDetails
+                document.getElementById('object').innerHTML = `${data.nom}`;
+                document.getElementById('object').style.fontFamily ='Georgia, serif';
+                document.getElementById('object').style.border = '2px solid #000';
+                document.getElementById('message').innerHTML=``;
+                prix = data.prix;
+            } catch (error) {
+                console.error('Erreur lors de la récupération de l\'objet aléatoire:', error);
+                // Gérer les erreurs ici, par exemple, afficher un message d'erreur à l'utilisateur
+            }
+        });
+    
+        document.getElementById('validateButton').addEventListener('click', function() {
+    // Get the user's input
+    var userInput = parseFloat(document.getElementById('userInput').value);
+
+    // Define the other parameter to compare against
+    var comparisonParameter = prix;
+    console.log(comparisonParameter);
+
+    // Check if the user's input is equal to the other parameter
+    if (userInput === comparisonParameter) {
+        // Display a particular message
+        document.getElementById('message').innerHTML = "Trop fort !! C'est le juste prix !";
+    } else {
+        // Display a default message or clear the message
+        document.getElementById('message').innerHTML = "Désolée tu t'es trompé..., c'était "+`${prix}`;
+    }
+});
+    </script>
 
 </body>
 </html>
