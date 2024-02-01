@@ -33,9 +33,6 @@
     <input type="text" id="userInput" class="mini-input" placeholder="Ma réponse en euro">
     <button id="validateButton" class="add-button">Valider</button>
     
-    <div id="price">
-        <!-- Les détails de l'objet choisi seront affichés ici -->
-    </div>
     <div id="message"></div></div></section>
 
     <script>
@@ -49,7 +46,6 @@
                 document.getElementById('object').innerHTML = `${data.nom}`;
                 document.getElementById('object').style.fontFamily ='Georgia, serif';
                 document.getElementById('object').style.border = '2px solid #000';
-                document.getElementById('price').innerHTML = `Prix: ${data.prix}`;
                 document.getElementById('message').innerHTML=``;
                 prix = data.prix;
             } catch (error) {
@@ -72,7 +68,7 @@
         document.getElementById('message').innerHTML = "Trop fort !! C'est le juste prix !";
     } else {
         // Display a default message or clear the message
-        document.getElementById('message').innerHTML = "Désolée tu t'es trompé...";
+        document.getElementById('message').innerHTML = "Désolée tu t'es trompé..., c'était "+`${prix}`;
     }
 });
     </script>
