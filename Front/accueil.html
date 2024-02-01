@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+
+  <div>
+    <header>
+      <h1>Le Juste Prix</h1>
+    </header>
+
+    <br><br><br><br><br>
+
+    <h3>Vous voulez devenir la vedette de la soirée ?</h3>
+    <h3>Ce jeu est fait pour vous.</h3>
+
+    <br><br>
+
+    <input type="text" class="input" placeholder="Entrez votre pseudo" id="pseudo">
+    <button class="button" onclick=redirect()>Continuer</button>
+
+    <br><br><br><br><br>
+
+    <script>
+      function redirect() {
+        var inputValue = document.getElementById("pseudo").value;
+        window.location.href = "demarrer_jeu.html?pseudo=" + encodeURIComponent(inputValue);
+      }
+    </script>
+
+    <img src="../Images_Juste_Prix_Png/euro.png" class="image_accueil" alt="Logo Euro">
+
+  </div>
+
+</body>
+
+</html>
