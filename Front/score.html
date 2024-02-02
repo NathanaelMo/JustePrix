@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+
+    <div>
+
+        <header>
+            <h1>Le Juste Prix</h1>
+        </header>
+
+        <br><br><br><br><br>
+
+        <img class="gif" id="scoreGif" alt="GIF animé">
+
+        <script>
+            const score = (new URLSearchParams(window.location.search)).get('score');
+            const scoreArrondi = Math.round(parseFloat(score.replace(/,/g, '')));
+            const h2Element = document.createElement("h2");
+            h2Element.textContent = `Ton score est de ${scoreArrondi}%`;
+            document.body.appendChild(h2Element);
+
+            const gifElement = document.getElementById("scoreGif");
+
+            if (scoreArrondi >= 50) {
+                gifElement.src = "gagne.gif";
+            } else {
+                gifElement.src = "perdu.gif";
+            }
+        </script>
+
+    </div>
+
+</body>
+
+</html>

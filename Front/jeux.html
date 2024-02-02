@@ -50,8 +50,12 @@
     </div>
 </section>
 
+    <button id="calculerScoreButton" class="button" onclick="score()">Terminer le jeu</button>
+
 <script>
     var prix = 0;
+    var nb_questions = 0;
+    var nb_reponses_correctes = 0;
     var reussi=false;
 
     document.getElementById('getRandomObjectButton').addEventListener('click', async () => {
@@ -76,6 +80,8 @@
         // Get the user's input
         var userInput = parseFloat(document.getElementById('userInput').value);
 
+            nb_questions++;
+
         // Define the other parameter to compare against
         var comparisonParameter = prix;
         console.log(comparisonParameter);
@@ -86,9 +92,11 @@
             document.getElementById('message').innerHTML = "Trop fort !!! C'est le juste prix !";
             reussi=true;
             cacherBoutonRejouer(true)
+            nb_questions++;
         } else if (userInput < comparisonParameter) {
             // Affiche un message indiquant que l'entrée de l'utilisateur est inférieure au prix
             document.getElementById('message').innerHTML = "C'est plus !";
+                nb_reponses_correctes++;
         } else {
             // Affiche un message indiquant que l'entrée de l'utilisateur est supérieure au prix
             document.getElementById('message').innerHTML = "C'est moins !";
@@ -136,6 +144,12 @@
             section_reponse.style.display='none';
         }
     }
+
+        function score() {
+            var score = nb_reponses_correctes * 100 / nb_questions;
+            window.location.href = 'score.html?score=' + score;
+        }
+
 
     function cacherBoutonRejouer(aff){
         var bouton_nouveau_jeu = document.getElementById('getRandomObjectButton');
