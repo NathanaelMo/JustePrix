@@ -102,3 +102,7 @@ a {
 a:hover { /* Nouvelle couleur du texte au survol (noir) */
   background-color: #cc4d52; /* Nouvelle couleur de fond au survol (rose plus foncé dans cet exemple) */
 }
+
+.hidden {
+  visibility: hidden;
+}
