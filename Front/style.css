@@ -58,6 +58,20 @@ p {
   cursor: pointer;
 }
 
+a {
+  color: white; /* Couleur du lien (blanc) */
+  background-color: #ff5d63; /* Couleur de fond rose (à personnaliser selon vos besoins) */
+  padding: 10px; /* Espace intérieur du lien (à personnaliser selon vos besoins) */
+  text-decoration: none; /* Supprime le soulignement par défaut */
+  border-radius: 10px; 
+  transition: color 0.3s, background-color 0.3s; /* Animation de transition pour la couleur du texte et la couleur de fond sur 0.3 secondes */
+}
+
+/* Style au survol du lien */
+a:hover { /* Nouvelle couleur du texte au survol (noir) */
+  background-color: #cc4d52; /* Nouvelle couleur de fond au survol (rose plus foncé dans cet exemple) */
+}
+
 /* Script */
 
 .script {
@@ -89,18 +103,9 @@ input:focus {
   height: auto;
 }
 
-a {
-  color: white; /* Couleur du lien (blanc) */
-  background-color: #ff5d63; /* Couleur de fond rose (à personnaliser selon vos besoins) */
-  padding: 10px; /* Espace intérieur du lien (à personnaliser selon vos besoins) */
-  text-decoration: none; /* Supprime le soulignement par défaut */
-  border-radius: 10px; 
-  transition: color 0.3s, background-color 0.3s; /* Animation de transition pour la couleur du texte et la couleur de fond sur 0.3 secondes */
-}
-
-/* Style au survol du lien */
-a:hover { /* Nouvelle couleur du texte au survol (noir) */
-  background-color: #cc4d52; /* Nouvelle couleur de fond au survol (rose plus foncé dans cet exemple) */
+.image_jeu {
+  width: 175px; 
+  height: auto;
 }
 
 .gif {
