@@ -85,6 +85,7 @@
             // Affiche un message particulier
             document.getElementById('message').innerHTML = "Trop fort !!! C'est le juste prix !";
             reussi=true;
+            cacherBoutonRejouer(true)
         } else if (userInput < comparisonParameter) {
             // Affiche un message indiquant que l'entrée de l'utilisateur est inférieure au prix
             document.getElementById('message').innerHTML = "C'est plus !";
@@ -96,6 +97,7 @@
 
     function startCountdown() {
         changerAffichageBlockJeu(true);
+        cacherBoutonRejouer(false)
         //on remets le jeu à zéro
         reussi=false;
         var seconds = 30; //Voir pour changer la valeur en fonction de la difficulté
@@ -111,6 +113,7 @@
                     clearInterval(countdownInterval); // Arrêter le compte à rebours
                     countdownElement.innerHTML = 'Terminé! Vous avez perdu !';
                     changerAffichageBlockJeu(false);
+                    cacherBoutonRejouer(true)
                 } else {
                     countdownElement.innerHTML = 'Temps restant : ' + seconds + ' secondes';
                 }
@@ -131,6 +134,17 @@
         } else {
             section_question.style.display = 'none';
             section_reponse.style.display='none';
+        }
+    }
+
+    function cacherBoutonRejouer(aff){
+        var bouton_nouveau_jeu = document.getElementById('getRandomObjectButton');
+
+        // Si la section est actuellement visible, la cacher, sinon l'afficher
+        if (aff===true) {
+            bouton_nouveau_jeu.style.visibility = 'visible';
+        } else {
+            bouton_nouveau_jeu.style.visibility = 'hidden';
         }
     }
 </script>
