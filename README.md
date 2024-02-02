@@ -12,10 +12,18 @@ Si le joueur trouve la valeur attendue avant la fin du timer il gagne. Dans le c
 
 Le joueur peut, après une partie, en recommencer une pour continuer de s'amuser de manière extrême.
 
+## Comment jouer ? 
+
+Pour lancer la partie, il faut lancer la commande : node ./serveur_https.js
+Ensuite il faut consulter l'url : http://localhost:8080/
+
+Et voila ! 
+Vous pouvez désormais jouer au juste prix jusqu'au bout de la nuit ! ;)
+
 ## Collaborateurs
 
-  - Léo Paugam
-  - Anouk Gouhier-Dupuis
-  - Charlotte Menou
-  - Johan Rochard
-  - Nathanaël Monnier 
+  - Léo Paugam - KiraWashi
+  - Anouk Gouhier-Dupuis - Kuonagou
+  - Charlotte Menou - CharlotteMenou
+  - Johan Rochard - Fantomas29
+  - Nathanaël Monnier - NathanaelMo

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <div>
+        <header>
+            <h1>Le Juste Prix</h1>
+        </header>
+
+        <br><br><br><br><br>
+
+        <h3>Le but de ce jeu est de deviner le prix des articles.</h3>
+
+        <script>
+            const pseudo = (new URLSearchParams(window.location.search)).get('pseudo');
+            const h2Element = document.createElement("h3");
+            h2Element.textContent = `A toi de jouer ${pseudo} !`;
+            document.body.appendChild(h2Element);
+        </script>
+    </div>
+
+    <div>
+        <br><br>
+        <button class="button" onclick=redirect()>Commencer à jouer</button>
+    </div>
+
+    <script>
+        function redirect() {
+            window.location.href = "jeux.html";
+        }
+    </script>
+
+    <br><br><br><br><br>
+
+    <img src="euro.png" class="image_accueil" alt="Logo Euro">
+
+</body>
+
+</html>
