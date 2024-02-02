@@ -25,7 +25,9 @@
     <section>
         <div>
             <p>Quel est le prix de cet objet ?</p>
+            <div id="image"></div>
             <div id="object">
+            
                 <!-- Les détails de l'objet choisi seront affichés ici -->
                 <div>
 
@@ -51,8 +53,10 @@
 
                 // Afficher les détails de l'objet dans #objectDetails
                 document.getElementById('object').innerHTML = `${data.nom}`;
+                
                 document.getElementById('object').style.fontFamily = 'Georgia, serif';
                 document.getElementById('object').style.border = '2px solid #000';
+                document.getElementById('image').innerHTML = `<img src="${data.imagePng}" alt="${data.nom}" width="600" height="400">`;
                 document.getElementById('message').innerHTML = ``;
                 prix = data.prix;
             } catch (error) {
