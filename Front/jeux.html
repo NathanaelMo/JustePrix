@@ -5,14 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" href="euro.png" type="image/x-icon">
+    <title>Le Juste Prix par TWIX</title>
 </head>
 
 <body onload="changerAffichageBlockJeu(false);">
 
-<header>
-    <h1>Le Juste Prix</h1>
-    <div id="countdown">Temps restant : 30 secondes</div>
-</header>
+    <header>
+        <a href="./index.html" >Accueil</a>
+        <h1>Le Juste Prix :</h1>
+        <a href="./index.html" ></a>
+      <div id="countdown">Temps restant : 30 secondes</div>
+      </header>
+
 
 <!-- Le reste du contenu de votre page va ici -->
 <section>
@@ -45,6 +50,7 @@
 
 <script>
     var prix = 0;
+
     document.getElementById('getRandomObjectButton').addEventListener('click', async () => {
         try {
             const response = await fetch('/getRandomObject');
@@ -112,8 +118,20 @@
             section_reponse.style.display='none';
         }
     }
-</script>
 
+        // Vérifie si l'entrée de l'utilisateur est égale au paramètre de comparaison
+        if (userInput === comparisonParameter) {
+            // Affiche un message particulier
+            document.getElementById('message').innerHTML = "Trop fort !! C'est le juste prix !";
+        } else if (userInput < comparisonParameter) {
+            // Affiche un message indiquant que l'entrée de l'utilisateur est inférieure au prix
+            document.getElementById('message').innerHTML = "C'est plus !";
+        } else {
+            // Affiche un message indiquant que l'entrée de l'utilisateur est supérieure au prix
+            document.getElementById('message').innerHTML = "C'est moins !";
+        }
+    });
+</script>
 </body>
 
 </html>
