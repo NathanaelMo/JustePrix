@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="icon" href="euro.png" type="image/x-icon">
+    <link rel="icon" href="./Images_Juste_Prix_Png/euro.png" type="image/x-icon">
     <title>Le Juste Prix par TWIX</title>
 </head>
 
@@ -32,6 +32,7 @@
 <section id="question">
     <div>
         <p>Quel est le prix de cet objet ?</p>
+        <div id="image"></div>
         <div id="object">
             <!-- Les détails de l'objet choisi seront affichés ici -->
             <div>
@@ -62,6 +63,7 @@
             document.getElementById('object').innerHTML = `${data.nom}`;
             document.getElementById('object').style.fontFamily = 'Georgia, serif';
             document.getElementById('object').style.border = '2px solid #000';
+            document.getElementById('image').innerHTML = `<img src="${data.imagePng}" alt="${data.nom}" width="600" height="400">`;
             document.getElementById('message').innerHTML = ``;
             prix = data.prix;
         } catch (error) {
