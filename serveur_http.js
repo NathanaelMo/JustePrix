@@ -1,6 +1,6 @@
 const express = require('express');
-const config = require('./config.js');
-const { chargerEtChoisirObjet } = require('./obtenirObjetAleatoire.js');
+const config = require('./Back/config.js');
+const { chargerEtChoisirObjet } = require('./Back/obtenirObjetAleatoire.js');
 
 const base = config.base;
 const port_http = config.port_http;
