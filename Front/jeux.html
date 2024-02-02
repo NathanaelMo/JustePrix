@@ -15,12 +15,13 @@
         <a href="./index.html" >Accueil</a>
         <h1>Le Juste Prix :</h1>
         <a href="./index.html" ></a>
-      <div id="countdown">Temps restant : 30 secondes</div>
-      </header>
+    </header>
+
 
 
 <!-- Le reste du contenu de votre page va ici -->
 <section>
+    <h2 id="countdown">Temps restant : 30 secondes</h2>
     <p>Comme toujours il faut essayer de deviner le prix le plus juste, BONNE CHANCE</p>
 </section>
 <section>
@@ -50,6 +51,7 @@
 
 <script>
     var prix = 0;
+    var reussi=false;
 
     document.getElementById('getRandomObjectButton').addEventListener('click', async () => {
         try {
@@ -76,33 +78,44 @@
         var comparisonParameter = prix;
         console.log(comparisonParameter);
 
-        // Check if the user's input is equal to the other parameter
+        // Vérifie si l'entrée de l'utilisateur est égale au paramètre de comparaison
         if (userInput === comparisonParameter) {
-            // Display a particular message
-            document.getElementById('message').innerHTML = "Trop fort !! C'est le juste prix !";
+            // Affiche un message particulier
+            document.getElementById('message').innerHTML = "Trop fort !!! C'est le juste prix !";
+            reussi=true;
+        } else if (userInput < comparisonParameter) {
+            // Affiche un message indiquant que l'entrée de l'utilisateur est inférieure au prix
+            document.getElementById('message').innerHTML = "C'est plus !";
         } else {
-            // Display a default message or clear the message
-            document.getElementById('message').innerHTML = "Désolée tu t'es trompé..., c'était " + `${prix}`;
+            // Affiche un message indiquant que l'entrée de l'utilisateur est supérieure au prix
+            document.getElementById('message').innerHTML = "C'est moins !";
         }
     });
 
     function startCountdown() {
         changerAffichageBlockJeu(true);
+        //on remets le jeu à zéro
+        reussi=false;
         var seconds = 30; //Voir pour changer la valeur en fonction de la difficulté
         var countdownElement = document.getElementById('countdown');
 
         var countdownInterval = setInterval(function () {
-            seconds--;
-
-            if (seconds <= 0) {
-                clearInterval(countdownInterval); // Arrêter le compte à rebours
-                countdownElement.innerHTML = 'Terminé! Vous avez perdu !';
-                changerAffichageBlockJeu(false);
-            } else {
-                countdownElement.innerHTML = 'Temps restant : ' + seconds + ' secondes';
+            if (reussi===true){
+                countdownElement.innerHTML = 'Terminé! Vous avez gagné !';
+                clearInterval(countdownInterval);
+            }else {
+                seconds--;
+                if (seconds <= 0) {
+                    clearInterval(countdownInterval); // Arrêter le compte à rebours
+                    countdownElement.innerHTML = 'Terminé! Vous avez perdu !';
+                    changerAffichageBlockJeu(false);
+                } else {
+                    countdownElement.innerHTML = 'Temps restant : ' + seconds + ' secondes';
+                }
             }
-        }, 1000); // Mettre à jour le compte à rebours toutes les 1000 millisecondes (1 seconde)
-    }
+            }, 1000); // Mettre à jour le compte à rebours toutes les 1000 millisecondes (1 seconde)
+        }
+
 
     function changerAffichageBlockJeu(aff) {
         var section_question = document.getElementById('question');
@@ -118,19 +131,6 @@
             section_reponse.style.display='none';
         }
     }
-
-        // Vérifie si l'entrée de l'utilisateur est égale au paramètre de comparaison
-        if (userInput === comparisonParameter) {
-            // Affiche un message particulier
-            document.getElementById('message').innerHTML = "Trop fort !! C'est le juste prix !";
-        } else if (userInput < comparisonParameter) {
-            // Affiche un message indiquant que l'entrée de l'utilisateur est inférieure au prix
-            document.getElementById('message').innerHTML = "C'est plus !";
-        } else {
-            // Affiche un message indiquant que l'entrée de l'utilisateur est supérieure au prix
-            document.getElementById('message').innerHTML = "C'est moins !";
-        }
-    });
 </script>
 </body>
 
