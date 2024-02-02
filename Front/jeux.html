@@ -9,43 +9,44 @@
     <title>Le Juste Prix par TWIX</title>
 </head>
 
-<body>
+<body onload="changerAffichageBlockJeu(false);">
 
     <header>
         <a href="./index.html" >Accueil</a>
         <h1>Le Juste Prix :</h1>
         <a href="./index.html" ></a>
+      <div id="countdown">Temps restant : 30 secondes</div>
       </header>
 
-    <!-- Le reste du contenu de votre page va ici -->
-    <section>
-        <p>Comme toujours il faut essayer de deviner le prix le plus juste, BONNE CHANCE</p>
-    </section>
-    <section>
-        <div><button id="getRandomObjectButton" class="add-button">Nouvelle question</button>
 
+<!-- Le reste du contenu de votre page va ici -->
+<section>
+    <p>Comme toujours il faut essayer de deviner le prix le plus juste, BONNE CHANCE</p>
+</section>
+<section>
+    <div><button id="getRandomObjectButton" class="add-button" onclick="startCountdown()" >Nouvelle question</button>
+
+    </div>
+</section>
+<section id="question">
+    <div>
+        <p>Quel est le prix de cet objet ?</p>
+        <div id="object">
+            <!-- Les détails de l'objet choisi seront affichés ici -->
+            <div>
+
+
+
+            </div>
         </div>
-    </section>
-    <section>
-        <div>
-            <p>Quel est le prix de cet objet ?</p>
-            <div id="object">
-                <!-- Les détails de l'objet choisi seront affichés ici -->
-                <div>
-
-
-
-                </div>
-    </section>
-    <section>
-        <div>
-            <input type="text" id="userInput" class="mini-input" placeholder="Ma réponse en euro">
-            <button id="validateButton" class="add-button">Valider</button>
-
-            <div id="message"></div>
-        </div>
-    </section>
-
+</section>
+<section id="reponse">
+    <div>
+        <input type="text" id="userInput" class="mini-input" placeholder="Ma réponse en euro">
+        <button id="validateButton" class="add-button">Valider</button>
+        <div id="message"></div>
+    </div>
+</section>
 
 <script>
     var prix = 0;
@@ -73,6 +74,50 @@
 
         // Define the other parameter to compare against
         var comparisonParameter = prix;
+        console.log(comparisonParameter);
+
+        // Check if the user's input is equal to the other parameter
+        if (userInput === comparisonParameter) {
+            // Display a particular message
+            document.getElementById('message').innerHTML = "Trop fort !! C'est le juste prix !";
+        } else {
+            // Display a default message or clear the message
+            document.getElementById('message').innerHTML = "Désolée tu t'es trompé..., c'était " + `${prix}`;
+        }
+    });
+
+    function startCountdown() {
+        changerAffichageBlockJeu(true);
+        var seconds = 30; //Voir pour changer la valeur en fonction de la difficulté
+        var countdownElement = document.getElementById('countdown');
+
+        var countdownInterval = setInterval(function () {
+            seconds--;
+
+            if (seconds <= 0) {
+                clearInterval(countdownInterval); // Arrêter le compte à rebours
+                countdownElement.innerHTML = 'Terminé! Vous avez perdu !';
+                changerAffichageBlockJeu(false);
+            } else {
+                countdownElement.innerHTML = 'Temps restant : ' + seconds + ' secondes';
+            }
+        }, 1000); // Mettre à jour le compte à rebours toutes les 1000 millisecondes (1 seconde)
+    }
+
+    function changerAffichageBlockJeu(aff) {
+        var section_question = document.getElementById('question');
+        var section_reponse = document.getElementById('reponse');
+
+
+        // Si la section est actuellement visible, la cacher, sinon l'afficher
+        if (aff==true) {
+            section_question.style.display = 'block';
+            section_reponse.style.display = 'block';
+        } else {
+            section_question.style.display = 'none';
+            section_reponse.style.display='none';
+        }
+    }
 
         // Vérifie si l'entrée de l'utilisateur est égale au paramètre de comparaison
         if (userInput === comparisonParameter) {
@@ -87,4 +132,6 @@
         }
     });
 </script>
+</body>
 
+</html>
