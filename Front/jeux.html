@@ -5,84 +5,135 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" href="euro.png" type="image/x-icon">
+    <title>Le Juste Prix par TWIX</title>
 </head>
 
-<body>
+<body onload="changerAffichageBlockJeu(false);">
 
     <header>
-        <h1>Le Juste Prix</h1>
+        <a href="./index.html" >Accueil</a>
+        <h1>Le Juste Prix :</h1>
+        <a href="./index.html" ></a>
     </header>
 
-    <!-- Le reste du contenu de votre page va ici -->
-    <section>
-        <p>Comme toujours il faut essayer de deviner le prix le plus juste, BONNE CHANCE</p>
-    </section>
-    <section>
-        <div><button id="getRandomObjectButton" class="add-button">Nouvelle question</button>
 
+
+<!-- Le reste du contenu de votre page va ici -->
+<section>
+    <h2 id="countdown">Temps restant : 30 secondes</h2>
+    <p>Comme toujours il faut essayer de deviner le prix le plus juste, BONNE CHANCE</p>
+</section>
+<section>
+    <div><button id="getRandomObjectButton" class="add-button" onclick="startCountdown()" >Nouvelle question</button>
+
+    </div>
+</section>
+<section id="question">
+    <div>
+        <p>Quel est le prix de cet objet ?</p>
+        <div id="image"></div>
+        <div id="object">
+            <!-- Les détails de l'objet choisi seront affichés ici -->
+            <div>
+
+
+
+            </div>
         </div>
-    </section>
-    <section>
-        <div>
-            <p>Quel est le prix de cet objet ?</p>
-            <div id="image"></div>
-            <div id="object">
-            
-                <!-- Les détails de l'objet choisi seront affichés ici -->
-                <div>
+</section>
+<section id="reponse">
+    <div>
+        <input type="text" id="userInput" class="mini-input" placeholder="Ma réponse en euro">
+        <button id="validateButton" class="add-button">Valider</button>
+        <div id="message"></div>
+    </div>
+</section>
 
+<script>
+    var prix = 0;
+    var reussi=false;
 
+    document.getElementById('getRandomObjectButton').addEventListener('click', async () => {
+        try {
+            const response = await fetch('/getRandomObject');
+            const data = await response.json();
 
-                </div>
-    </section>
-    <section>
-        <div>
-            <input type="text" id="userInput" class="mini-input" placeholder="Ma réponse en euro">
-            <button id="validateButton" class="add-button">Valider</button>
+            // Afficher les détails de l'objet dans #objectDetails
+            document.getElementById('object').innerHTML = `${data.nom}`;
+            document.getElementById('object').style.fontFamily = 'Georgia, serif';
+            document.getElementById('object').style.border = '2px solid #000';
+            document.getElementById('image').innerHTML = `<img src="${data.imagePng}" alt="${data.nom}" width="600" height="400">`;
+            document.getElementById('message').innerHTML = ``;
+            prix = data.prix;
+        } catch (error) {
+            console.error('Erreur lors de la récupération de l\'objet aléatoire:', error);
+            // Gérer les erreurs ici, par exemple, afficher un message d'erreur à l'utilisateur
+        }
+    });
 
-            <div id="message"></div>
-        </div>
-    </section>
+    document.getElementById('validateButton').addEventListener('click', function () {
+        // Get the user's input
+        var userInput = parseFloat(document.getElementById('userInput').value);
 
-    <script>
-        var prix = 0;
-        document.getElementById('getRandomObjectButton').addEventListener('click', async () => {
-            try {
-                const response = await fetch('/getRandomObject');
-                const data = await response.json();
+        // Define the other parameter to compare against
+        var comparisonParameter = prix;
+        console.log(comparisonParameter);
 
-                // Afficher les détails de l'objet dans #objectDetails
-                document.getElementById('object').innerHTML = `${data.nom}`;
-                document.getElementById('object').style.fontFamily = 'Georgia, serif';
-                document.getElementById('object').style.border = '2px solid #000';
-                document.getElementById('image').innerHTML = `<img src="${data.imagePng}" alt="${data.nom}" width="600" height="400">`;
-                document.getElementById('message').innerHTML = ``;
-                prix = data.prix;
-            } catch (error) {
-                console.error('Erreur lors de la récupération de l\'objet aléatoire:', error);
-                // Gérer les erreurs ici, par exemple, afficher un message d'erreur à l'utilisateur
+        // Vérifie si l'entrée de l'utilisateur est égale au paramètre de comparaison
+        if (userInput === comparisonParameter) {
+            // Affiche un message particulier
+            document.getElementById('message').innerHTML = "Trop fort !!! C'est le juste prix !";
+            reussi=true;
+        } else if (userInput < comparisonParameter) {
+            // Affiche un message indiquant que l'entrée de l'utilisateur est inférieure au prix
+            document.getElementById('message').innerHTML = "C'est plus !";
+        } else {
+            // Affiche un message indiquant que l'entrée de l'utilisateur est supérieure au prix
+            document.getElementById('message').innerHTML = "C'est moins !";
+        }
+    });
+
+    function startCountdown() {
+        changerAffichageBlockJeu(true);
+        //on remets le jeu à zéro
+        reussi=false;
+        var seconds = 30; //Voir pour changer la valeur en fonction de la difficulté
+        var countdownElement = document.getElementById('countdown');
+
+        var countdownInterval = setInterval(function () {
+            if (reussi===true){
+                countdownElement.innerHTML = 'Terminé! Vous avez gagné !';
+                clearInterval(countdownInterval);
+            }else {
+                seconds--;
+                if (seconds <= 0) {
+                    clearInterval(countdownInterval); // Arrêter le compte à rebours
+                    countdownElement.innerHTML = 'Terminé! Vous avez perdu !';
+                    changerAffichageBlockJeu(false);
+                } else {
+                    countdownElement.innerHTML = 'Temps restant : ' + seconds + ' secondes';
+                }
             }
-        });
+            }, 1000); // Mettre à jour le compte à rebours toutes les 1000 millisecondes (1 seconde)
+        }
 
-        document.getElementById('validateButton').addEventListener('click', function () {
-            // Get the user's input
-            var userInput = parseFloat(document.getElementById('userInput').value);
 
-            // Define the other parameter to compare against
-            var comparisonParameter = prix;
-            console.log(comparisonParameter);
+    function changerAffichageBlockJeu(aff) {
+        var section_question = document.getElementById('question');
+        var section_reponse = document.getElementById('reponse');
 
-            // Check if the user's input is equal to the other parameter
-            if (userInput === comparisonParameter) {
-                // Display a particular message
-                document.getElementById('message').innerHTML = "Trop fort !! C'est le juste prix !";
-            } else {
-                // Display a default message or clear the message
-                document.getElementById('message').innerHTML = "Désolée tu t'es trompé..., c'était " + `${prix}`;
-            }
-        });
-    </script>
 
+        // Si la section est actuellement visible, la cacher, sinon l'afficher
+        if (aff==true) {
+            section_question.style.display = 'block';
+            section_reponse.style.display = 'block';
+        } else {
+            section_question.style.display = 'none';
+            section_reponse.style.display='none';
+        }
+    }
+</script>
 </body>
 
 </html>
