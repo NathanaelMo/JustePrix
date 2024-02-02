@@ -42,44 +42,45 @@
         </div>
     </section>
 
-    <script>
-        var prix = 0;
-        document.getElementById('getRandomObjectButton').addEventListener('click', async () => {
-            try {
-                const response = await fetch('/getRandomObject');
-                const data = await response.json();
 
-                // Afficher les détails de l'objet dans #objectDetails
-                document.getElementById('object').innerHTML = `${data.nom}`;
-                document.getElementById('object').style.fontFamily = 'Georgia, serif';
-                document.getElementById('object').style.border = '2px solid #000';
-                document.getElementById('message').innerHTML = ``;
-                prix = data.prix;
-            } catch (error) {
-                console.error('Erreur lors de la récupération de l\'objet aléatoire:', error);
-                // Gérer les erreurs ici, par exemple, afficher un message d'erreur à l'utilisateur
-            }
-        });
+<script>
+    var prix = 0;
 
-        document.getElementById('validateButton').addEventListener('click', function () {
-            // Get the user's input
-            var userInput = parseFloat(document.getElementById('userInput').value);
+    document.getElementById('getRandomObjectButton').addEventListener('click', async () => {
+        try {
+            const response = await fetch('/getRandomObject');
+            const data = await response.json();
 
-            // Define the other parameter to compare against
-            var comparisonParameter = prix;
-            console.log(comparisonParameter);
+            // Afficher les détails de l'objet dans #objectDetails
+            document.getElementById('object').innerHTML = `${data.nom}`;
+            document.getElementById('object').style.fontFamily = 'Georgia, serif';
+            document.getElementById('object').style.border = '2px solid #000';
+            document.getElementById('message').innerHTML = ``;
+            prix = data.prix;
+        } catch (error) {
+            console.error('Erreur lors de la récupération de l\'objet aléatoire:', error);
+            // Gérer les erreurs ici, par exemple, afficher un message d'erreur à l'utilisateur
+        }
+    });
 
-            // Check if the user's input is equal to the other parameter
-            if (userInput === comparisonParameter) {
-                // Display a particular message
-                document.getElementById('message').innerHTML = "Trop fort !! C'est le juste prix !";
-            } else {
-                // Display a default message or clear the message
-                document.getElementById('message').innerHTML = "Désolée tu t'es trompé..., c'était " + `${prix}`;
-            }
-        });
-    </script>
+    document.getElementById('validateButton').addEventListener('click', function () {
+        // Get the user's input
+        var userInput = parseFloat(document.getElementById('userInput').value);
 
-</body>
+        // Define the other parameter to compare against
+        var comparisonParameter = prix;
 
-</html>
+        // Vérifie si l'entrée de l'utilisateur est égale au paramètre de comparaison
+        if (userInput === comparisonParameter) {
+            // Affiche un message particulier
+            document.getElementById('message').innerHTML = "Trop fort !! C'est le juste prix !";
+        } else if (userInput < comparisonParameter) {
+            // Affiche un message indiquant que l'entrée de l'utilisateur est inférieure au prix
+            document.getElementById('message').innerHTML = "C'est plus !";
+        } else {
+            // Affiche un message indiquant que l'entrée de l'utilisateur est supérieure au prix
+            document.getElementById('message').innerHTML = "C'est moins !";
+        }
+    });
+</script>
+
