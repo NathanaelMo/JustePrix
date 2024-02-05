@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+
+    <div>
+
+        <header>
+            <h1>Le Juste Prix</h1>
+        </header>
+
+        <br><br><br><br><br>
+
+        <img class="gif" id="scoreGif" alt="GIF animé">
+
+        <script>
+            const nb_questions = (new URLSearchParams(window.location.search)).get('nb_questions');
+            const nb_bonnes_reponses = (new URLSearchParams(window.location.search)).get('nb_reponses_correctes');
+            const h2Element = document.createElement("h2");
+            h2Element.textContent = `Ton score est de ${nb_bonnes_reponses} / ${nb_questions}`;
+            document.body.appendChild(h2Element);
+
+            const gifElement = document.getElementById("scoreGif");
+
+            if ((nb_bonnes_reponses * 100 / nb_questions) >= 40) {
+                gifElement.src = "Images_Juste_Prix_Png/gagne.gif";
+            } else {
+                gifElement.src = "Images_Juste_Prix_Png/perdu.gif";
+            }
+        </script>
+
+    </div>
+
+</body>
+
+</html>
