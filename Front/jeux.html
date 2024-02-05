@@ -18,20 +18,17 @@
     </header>
 
 
-
     <!-- Le reste du contenu de votre page va ici -->
     <section>
         <h2 id="countdown">Temps restant : 30 secondes</h2>
-        <p>Comme toujours il faut essayer de deviner le prix le plus juste, BONNE CHANCE</p>
     </section>
     <section>
-        <div><button id="getRandomObjectButton" class="add-button" onclick="startCountdown()">Nouvelle question</button>
-
+        <div><button id="getRandomObjectButton" class="button2" onclick="startCountdown()">Nouvelle question</button>
+            <br><br><br><br>
         </div>
     </section>
     <section id="question">
         <div>
-            <p>Quel est le prix de cet objet ?</p>
             <div id="image"></div>
             <div id="object">
                 <!-- Les détails de l'objet choisi seront affichés ici -->
@@ -41,11 +38,13 @@
 
                 </div>
             </div>
+            <p>Quel est le prix de cet objet ?</p>
     </section>
     <section id="reponse">
         <div>
-            <input type="text" id="userInput" class="mini-input" placeholder="Ma réponse en euro">
-            <button id="validateButton" class="add-button">Valider</button>
+            <input type="text" id="userInput" class="mini-input" placeholder="Ma réponse en euro"
+                oninput="validateInput(this)">
+            <button id="validateButton" class="button2">Valider</button>
             <div id="message"></div>
         </div>
     </section>
@@ -58,6 +57,9 @@
         var nb_reponses_correctes = 0;
         var reussi = false;
 
+        var bouton_terminer_jeu = document.getElementById('calculerScoreButton');
+        bouton_terminer_jeu.style.visibility = 'hidden';
+
         document.getElementById('getRandomObjectButton').addEventListener('click', async () => {
             try {
                 const response = await fetch('/getRandomObject');
@@ -66,10 +68,12 @@
                 // Afficher les détails de l'objet dans #objectDetails
                 document.getElementById('object').innerHTML = `${data.nom}`;
                 document.getElementById('object').style.fontFamily = 'Georgia, serif';
-                document.getElementById('object').style.border = '2px solid #000';
+                document.getElementById('object').style.fontSize = '25px';
+                document.getElementById('object').style.fontWeight = 'bold';
                 document.getElementById('image').innerHTML = `<img src="${data.imagePng}" alt="${data.nom}" class="image_jeu">`;
                 document.getElementById('message').innerHTML = ``;
                 prix = data.prix;
+                nb_questions++;
             } catch (error) {
                 console.error('Erreur lors de la récupération de l\'objet aléatoire:', error);
                 // Gérer les erreurs ici, par exemple, afficher un message d'erreur à l'utilisateur
@@ -79,8 +83,6 @@
         document.getElementById('validateButton').addEventListener('click', function () {
             // Get the user's input
             var userInput = parseFloat(document.getElementById('userInput').value);
-
-            nb_questions++;
 
             // Define the other parameter to compare against
             var comparisonParameter = prix;
@@ -92,7 +94,7 @@
                 document.getElementById('message').innerHTML = "Trop fort !!! C'est le juste prix !";
                 reussi = true;
                 cacherBoutonRejouer(true)
-            nb_reponses_correctes++;
+                nb_reponses_correctes++;
             } else if (userInput < comparisonParameter) {
                 // Affiche un message indiquant que l'entrée de l'utilisateur est inférieure au prix
                 document.getElementById('message').innerHTML = "C'est plus !";
@@ -104,7 +106,8 @@
 
         function startCountdown() {
             changerAffichageBlockJeu(true);
-        cacherBoutonRejouer(false)
+            cacherBoutonRejouer(false)
+            document.getElementById("userInput").value = "";
             //on remets le jeu à zéro
             reussi = false;
             var seconds = 30; //Voir pour changer la valeur en fonction de la difficulté
@@ -114,13 +117,19 @@
                 if (reussi === true) {
                     countdownElement.innerHTML = 'Terminé! Vous avez gagné !';
                     clearInterval(countdownInterval);
+                    if (nb_questions == 1) {
+                        bouton_terminer_jeu.style.visibility = 'visible';
+                    }
                 } else {
                     seconds--;
                     if (seconds <= 0) {
                         clearInterval(countdownInterval); // Arrêter le compte à rebours
                         countdownElement.innerHTML = 'Terminé! Vous avez perdu !';
                         changerAffichageBlockJeu(false);
-                    cacherBoutonRejouer(true)
+                        cacherBoutonRejouer(true)
+                        if (nb_questions == 1) {
+                            bouton_terminer_jeu.style.visibility = 'visible';
+                        }
                     } else {
                         countdownElement.innerHTML = 'Temps restant : ' + seconds + ' secondes';
                     }
@@ -145,22 +154,33 @@
         }
 
         function score() {
-            var score = nb_reponses_correctes * 100 / nb_questions;
-            window.location.href = 'score.html?score=' + score;
+            window.location.href = 'score.html?nb_questions=' + nb_questions + '&nb_reponses_correctes=' + nb_reponses_correctes;
         }
 
+        function cacherBoutonRejouer(aff) {
+            var bouton_nouveau_jeu = document.getElementById('getRandomObjectButton');
 
-    function cacherBoutonRejouer(aff){
-        var bouton_nouveau_jeu = document.getElementById('getRandomObjectButton');
-
-        // Si la section est actuellement visible, la cacher, sinon l'afficher
-        if (aff===true) {
-            bouton_nouveau_jeu.style.visibility = 'visible';
-        } else {
-            bouton_nouveau_jeu.style.visibility = 'hidden';
+            // Si la section est actuellement visible, la cacher, sinon l'afficher
+            if (aff === true) {
+                bouton_nouveau_jeu.style.visibility = 'visible';
+            } else {
+                bouton_nouveau_jeu.style.visibility = 'hidden';
+            }
         }
-    }
-</script>
+
+        function validateInput(input) {
+            // Récupérer la valeur de l'input
+            let inputValue = input.value;
+
+            // Remplacer les caractères non numériques par une chaîne vide
+            let newValue = inputValue.replace(/[^0-9]/g, '');
+
+            // Mettre à jour la valeur de l'input uniquement si elle a changé
+            if (newValue !== inputValue) {
+                input.value = newValue;
+            }
+        }
+    </script>
 </body>
 
 </html>
