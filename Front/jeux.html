@@ -18,20 +18,17 @@
     </header>
 
 
-
     <!-- Le reste du contenu de votre page va ici -->
     <section>
         <h2 id="countdown">Temps restant : 30 secondes</h2>
-        <p>Comme toujours il faut essayer de deviner le prix le plus juste, BONNE CHANCE</p>
     </section>
     <section>
-        <div><button id="getRandomObjectButton" class="add-button" onclick="startCountdown()">Nouvelle question</button>
-
+        <div><button id="getRandomObjectButton" class="button2" onclick="startCountdown()">Nouvelle question</button>
+            <br><br><br><br>
         </div>
     </section>
     <section id="question">
         <div>
-            <p>Quel est le prix de cet objet ?</p>
             <div id="image"></div>
             <div id="object">
                 <!-- Les détails de l'objet choisi seront affichés ici -->
@@ -41,11 +38,12 @@
 
                 </div>
             </div>
+            <p>Quel est le prix de cet objet ?</p>
     </section>
     <section id="reponse">
         <div>
             <input type="text" id="userInput" class="mini-input" placeholder="Ma réponse en euro">
-            <button id="validateButton" class="add-button">Valider</button>
+            <button id="validateButton" class="button2">Valider</button>
             <div id="message"></div>
         </div>
     </section>
@@ -66,10 +64,12 @@
                 // Afficher les détails de l'objet dans #objectDetails
                 document.getElementById('object').innerHTML = `${data.nom}`;
                 document.getElementById('object').style.fontFamily = 'Georgia, serif';
-                document.getElementById('object').style.border = '2px solid #000';
+                document.getElementById('object').style.fontSize = '25px';
+                document.getElementById('object').style.fontWeight = 'bold';
                 document.getElementById('image').innerHTML = `<img src="${data.imagePng}" alt="${data.nom}" class="image_jeu">`;
                 document.getElementById('message').innerHTML = ``;
                 prix = data.prix;
+                nb_questions++;
             } catch (error) {
                 console.error('Erreur lors de la récupération de l\'objet aléatoire:', error);
                 // Gérer les erreurs ici, par exemple, afficher un message d'erreur à l'utilisateur
@@ -79,8 +79,6 @@
         document.getElementById('validateButton').addEventListener('click', function () {
             // Get the user's input
             var userInput = parseFloat(document.getElementById('userInput').value);
-
-            nb_questions++;
 
             // Define the other parameter to compare against
             var comparisonParameter = prix;
@@ -145,8 +143,7 @@
         }
 
         function score() {
-            var score = nb_reponses_correctes * 100 / nb_questions;
-            window.location.href = 'score.html?score=' + score;
+            window.location.href = 'score.html?nb_questions=' + nb_questions + '&nb_reponses_correctes=' + nb_reponses_correctes;
         }
 
 

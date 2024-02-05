@@ -44,6 +44,14 @@ h3 {
 p {
   color: #666;
   margin-bottom: 20px;
+  font-size: 23px;
+}
+
+.affichage_score {
+  color: #585858;
+  margin-bottom: 20px;
+  font-size: 18px;
+  text-align: left;
 }
 
 /* Bouttons */
@@ -55,6 +63,16 @@ p {
   border: none;
   font-size: 20px;
   border-radius: 4px;
+  cursor: pointer;
+}
+
+.button2 {
+  padding: 10px;
+  background-color: #9c9c9c;
+  color: #fff;
+  border: none;
+  font-size: 16px;
+  border-radius: 3px;
   cursor: pointer;
 }
 
@@ -104,8 +122,8 @@ input:focus {
 }
 
 .image_jeu {
-  width: 175px; 
-  height: auto;
+  width: auto; 
+  height: 200px;
 }
 
 .gif {
